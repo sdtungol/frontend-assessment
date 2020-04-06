@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Assessment 2</title>
+
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/main.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default" id="navbar">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img src="https://getbootstrap.com/docs/4.4/assets/brand/bootstrap-solid.svg" height="20px" class="d-inline align-top" alt="">
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="jumbotron text-center">
+        <div class="container">
+            <h1 class="title text-white">Hello Developer!</h1>
+            <p class="sub-title text-white">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            </p>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="nav nav-tabs" id="nav-tabs">
+        </ul>
+        
+        <div class="tab-content" id="tab-content">
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <!----------- Footer ------------>
+    <footer class="footer-bs clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 footer-brand">
+                    <h2>Logo</h2>
+                    <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
+                    <p>&copy; Frontend Assessment</p>
+                </div>
+                <div class="col-md-4 footer-nav">
+                    <h4>Menu —</h4>
+                    <div class="col-md-6">
+                        <ul class="pages">
+                            <li><a href="#">Travel</a></li>
+                            <li><a href="#">Nature</a></li>
+                            <li><a href="#">Explores</a></li>
+                            <li><a href="#">Science</a></li>
+                            <li><a href="#">Advice</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="list">
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contacts</a></li>
+                            <li><a href="#">Terms & Condition</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-2 footer-social">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">RSS</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 footer-ns">
+                    <h4>Newsletter</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                    <p>
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="Search for...">
+                          <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
+                          </span>
+                        </div><!-- /input-group -->
+                     </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+  src="https://code.jquery.com/jquery-1.12.4.min.js"
+  integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+  crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+        var $navTabs = $('#nav-tabs');
+        var $tabContent = $('#tab-content');
+        $.ajax({url: "./assets/data/data.json", success: function(result){
+            $.each(result, function(index, data) {
+                var tabActive = (index === 0) ? 'active' : '';
+                var contentOpen = (index === 0) ? 'in' : '';
+                $navTabs.append(`<li class="${tabActive}"><a href="#tab${index}" data-toggle="tab">${data.title}</a></li>`);
+                $tabContent.append(`
+                    <div class="tab-pane ${tabActive}" id="tab${index}">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a data-toggle="collapse" data-parent=".tab-pane" href="#collapse${index}">
+                                        ${data.title}
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapse${index}" class="panel-collapse collapse ${contentOpen}">
+                                <div class="panel-body">
+                                    ${data.content}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `);
+            });
+        }});
+
+        window.onscroll = function() {stickyHeader()};
+
+        // Get the header
+        var header = document.getElementById("navbar");
+
+        // Get the offset position of the navbar
+        var sticky = header.offsetTop;
+
+        // Add the sticky class to the header when you reach its scroll position. Remove "sticky" when you leave the scroll position
+        function stickyHeader() {
+        if (window.pageYOffset > sticky) {
+            header.classList.add("sticky");
+        } else {
+            header.classList.remove("sticky");
+        }
+        }
+    </script>
+  </body>
+</html>

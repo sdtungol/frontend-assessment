@@ -1,0 +1,145 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    margin: 0;
+    border-radius: 0;
+    background-color: #fff;
+
+    * {
+        transition: all .5s ease-in-out;
+    }
+
+    &.sticky {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        min-height: 30px;
+        
+        .navbar-brand {
+            height: 30px;
+            padding: 5px 15px;
+        }
+    }
+}
+
+.jumbotron {
+    min-height: 375px;
+    display: flex;
+    align-items: center;
+}
+
+.tab-content {
+    margin-bottom: 50px;
+
+    .panel-default {
+        > .panel-heading {
+            border-radius: 0;
+            background-color: #a08ba7;
+            color: #fff;
+        }
+    }
+}
+
+
+.footer-bs {
+    background-color: #3c3d41;
+	color: rgba(255,255,255,1.00);
+	margin-bottom: 20px;
+    border-top-left-radius: 0px;
+    margin-bottom: 0;
+    
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li {
+            padding: 5px 0;
+        }
+        a {
+            color: #fff;
+        }
+    }
+    .footer-nav {
+        .pages {
+            a {
+                font-weight: bold;
+                text-transform: uppercase;
+            }
+        }
+    }
+    .footer-brand {
+        p {
+            color: rgba(255,255,255,0.7);
+        }
+    }
+}
+
+.collapse{
+    visibility:  visible;
+    min-height:  100px;
+
+    &.in{
+      height: auto;
+    }
+  }
+  
+@media(min-width:768px) {
+    .panel-heading {
+        display: none;
+    }  
+    .panel {
+        border: none;
+        box-shadow: none;
+    }
+    .panel-collapse {
+        height: auto;
+        &.collapse {
+            display: block;
+        }
+    }
+    .footer-bs {
+        padding: 60px 40px;
+        .footer-nav,
+        .footer-social,
+        .footer-ns {
+            border-left:solid 1px rgba(255,255,255,0.10);
+        }
+    }
+}
+
+@media(max-width:767px) {
+    .tab-content {
+        .tab-pane {
+            display: block;
+        }    
+    }
+    .nav-tabs {
+        display: none;
+    }
+    .panel-title a {
+        display: block;
+    }
+    .panel {
+        margin: 0;
+        box-shadow: none;
+        border-radius: 0;
+        margin-top: -2px;
+    }
+    .tab-pane {
+        &:first-child {
+            .panel {
+                border-radius: 5px 5px 0 0;
+            }
+        }
+        &:last-child {
+            .panel {
+                border-radius: 0 0 5px 5px;
+            }
+        }
+    }
+}
